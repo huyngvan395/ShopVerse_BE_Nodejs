@@ -15,7 +15,15 @@ export default (sequelize, DataTypes) => {
                 }
             },
             totalAmount: {
-                type: DataTypes.DECIMAL(10, 2),
+                type: DataTypes.DECIMAL(15, 2),
+                allowNull: false,
+            },
+            recipientName: {
+                type: DataTypes.STRING,
+                allowNull: false,
+            },
+            recipientPhone: {
+                type: DataTypes.STRING,
                 allowNull: false,
             },
             shippingAddress: {

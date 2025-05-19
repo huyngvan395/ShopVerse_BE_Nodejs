@@ -42,7 +42,7 @@ User.hasMany(Favourite, { foreignKey: "userId", as: "favourite" });
 Product.belongsTo(Category, { foreignKey: "categoryId", as: "category" });
 Product.hasMany(Review, { foreignKey: "productId", as: "review" });
 Product.hasMany(OrderItem, { foreignKey: "productId", as: "orderItem" });
-Product.hasMany(Favourite, { foreignKey: "productId", as: "favourite" });
+Product.hasOne(Favourite, { foreignKey: "productId", as: "favourite" });
 
 // Cart associations
 Cart.belongsTo(User, { foreignKey: "userId", as: "user" });

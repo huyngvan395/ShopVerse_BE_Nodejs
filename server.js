@@ -8,6 +8,9 @@ import authRouter from "./routes/auth.js"
 import userRouter from "./routes/user.js";
 import productRouter from "./routes/product.js";
 import cartRouter from "./routes/cart.js";
+import orderRouter from "./routes/order.js";
+import addressRouter from "./routes/address.js";
+import categoryRouter from "./routes/category.js";
 import errorHandler from "./middlewares/errorHandler.js";
 import {fileURLToPath} from "url";
 import path from "path";
@@ -29,6 +32,9 @@ app.use("/api/auth", authRouter);
 app.use("/api/user", userRouter);
 app.use("/api/product", productRouter);
 app.use("/api/cart", cartRouter);
+app.use("/api/order", orderRouter)
+app.use("/api/address", addressRouter)
+app.use("/api/category", categoryRouter)
 
 app.use(errorHandler);
 

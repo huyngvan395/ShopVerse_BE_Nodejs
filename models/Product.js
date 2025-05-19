@@ -34,10 +34,6 @@ export default (sequelize, DataTypes) => {
                 type: DataTypes.DECIMAL(3, 2),
                 defaultValue: 0
             },
-            isFavourite: {
-                type: DataTypes.BOOLEAN,
-                defaultValue: false
-            },
             stock: {
                 type: DataTypes.INTEGER,
                 allowNull: false,

@@ -1,25 +1,36 @@
 import OrderService from '../services/OrderService.js';
 
-class OrderController{
+class OrderController {
 
-    async createOrder(req, res) {
+    async createOrderBuyNow(req, res) {
         try {
-            const orderData = req.body;
-            const newOrder = await OrderService.createOrder(orderData);
+            const userId = req.params.id;
+            const { productId, quantity } = req.body;
+            const newOrder = await OrderService.createOrderBuyNow(userId, productId, quantity);
             res.status(201).json(newOrder);
         } catch (error) {
             res.status(500).json({ message: error.message });
         }
     }
 
-    async getOrder(req, res) {
+    async createOrderCart(req, res) {
         try {
-            const orderId = req.params.id;
-            const order = await OrderService.getOrder(orderId);
-            if (!order) {
+            const userId = req.params.id;
+            const newOrder = await OrderService.createOrderCart(userId);
+            res.status(201).json(newOrder);
+        } catch (error) {
+            res.status(500).json({ message: error.message });
+        }
+    }
+
+    async getAllOrders(req, res) {
+        try {
+            const userId = req.params.id;
+            const orders = await OrderService.getAllOrders(userId);
+            if (!orders) {
                 return res.status(404).json({ message: 'Order not found' });
             }
-            res.status(200).json(order);
+            res.status(200).json(orders);
         } catch (error) {
             res.status(500).json({ message: error.message });
         }
@@ -51,4 +62,16 @@ class OrderController{
             res.status(500).json({ message: error.message });
         }
     }
+
+    async getOrderCount(req, res){
+        try {
+            const userId = req.params.id;
+            const count = await OrderService.getOrderCount(userId);
+            res.status(200).json(count);
+        } catch (error) {
+            res.status(500).json({ message: error.message });
+        }
+    }
 }
+
+export default new OrderController();

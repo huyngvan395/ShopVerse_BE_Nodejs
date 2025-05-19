@@ -41,4 +41,7 @@ class ReviewService extends BaseService{
             throw error;
         }
     }   
+
 }
+
+export default new ReviewService();

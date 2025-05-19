@@ -91,19 +91,17 @@ class UserService extends BaseService {
 
     async updateUserProfile(userId, userData){
         try{
-            if (userData.password) {
-                const salt = await bcrypt.genSalt(10);
-                userData.password = await bcrypt.hash(userData.password, salt);
-            }
 
+            console.log("User data to update: ", userData);
             const updateUser = await this.update(userId, userData)
 
             const userResponse = updateUser.toJSON();
+            console.log("User updated: ", userResponse);
             delete userResponse.password;
 
             return userResponse;
         } catch( error){
-            console.error("Error updating user profile: ", error);
+            console.error("Error updating user profile(UserService): ", error);
             throw error;
         }
     }

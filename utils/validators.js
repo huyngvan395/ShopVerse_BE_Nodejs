@@ -11,7 +11,7 @@ const userValidators = {
     ],
     updateProfile: [
         body("email").isEmail().withMessage("Valid email is required"),
-        body("name").notEmpty().withMessage("Name is required"),
+        body("fullName").notEmpty().withMessage("Name is required"),
         body("avatarUrl").optional().isURL().withMessage("Avatar URL must be a valid URL"),
     ]
 }

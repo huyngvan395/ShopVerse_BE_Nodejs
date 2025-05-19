@@ -67,9 +67,8 @@ class CartController {
 
     async updateSelected(req, res) {
         try {
-            const { selected } = req.body;
             const cartItemId = req.params.id;
-            const updatedItem = await CartService.updateSelected(cartItemId, selected);
+            const updatedItem = await CartService.updateSelected(cartItemId);
             if (!updatedItem) {
                 return res.status(404).json(false);
             }
@@ -88,6 +87,15 @@ class CartController {
                 return res.status(404).json(false);
             }
             res.status(200).json(true);
+        } catch (error) {
+            res.status(500).json({ message: error.message });
+        }
+    }
+    async getQuantitySelected(req, res) {
+        try {
+            const userId = req.params.id;
+            const quantity = await CartService.getQuantitySelected(userId);
+            res.status(200).json(quantity);
         } catch (error) {
             res.status(500).json({ message: error.message });
         }
